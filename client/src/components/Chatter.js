@@ -62,6 +62,11 @@ class Chatter extends Component {
     this.socket.emit('send_message', message, id)
   }
 
+  hideModal = () = {
+    this.setState({ isOpen: false });
+    this.handleInput.bind(this, 'user')
+  }
+
   renderUserName() {
     return this.state.user && (
       <span className="username">{`${this.state.user}'s `}</span>
@@ -88,7 +93,7 @@ class Chatter extends Component {
           variant="modal"
         />
         <Button
-          handleSubmit={() => this.setState({ isOpen: false }, () => this.handleInput.bind(this, 'user'))}
+          handleSubmit={this.hideModal}
           text="submit"
         />
       </Modal>
