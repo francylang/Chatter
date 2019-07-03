@@ -49,7 +49,12 @@ class Chatter extends Component {
   handleInput = (key, event) => {
     this.setState({
       [key]: event.target.value,
-    })
+    });
+  }
+
+  hideModal = () = {
+    this.setState({ isOpen: false });
+    this.handleInput.bind(this, 'user');
   }
 
   updateMessages(message) {
@@ -60,11 +65,6 @@ class Chatter extends Component {
 
   emitMessage(message, id) {
     this.socket.emit('send_message', message, id)
-  }
-
-  hideModal = () = {
-    this.setState({ isOpen: false });
-    this.handleInput.bind(this, 'user')
   }
 
   renderUserName() {
