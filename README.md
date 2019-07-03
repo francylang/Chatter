@@ -1,10 +1,14 @@
 # Chatter
 ## Installation
+This is essentially two repos in one. The server is accessed via proxy in the `package.json` of the `./client` directory. The server is running on `http://localhost:5000/`. The React side/ client is running on `http://localhost:3000/`. 
 - Git clone
-- npm install
-- nodemon server.js
-- cd into the Client directory
-- npm start
+- `cd` into the root directory of the project
+- Run `npm install`
+- Run `nodemon server.js` || `node server.js`
+- cd into the `client` directory
+- Run `npm install`
+- Run `npm start`
+- Navigate to `http://localhost:3000/`
 
 ## Usage
 A chat/ messenger app with real-time communication between 2 or more users.
