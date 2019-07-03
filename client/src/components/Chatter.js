@@ -74,6 +74,7 @@ class Chatter extends Component {
         <Message
           key={i}
           message={message}
+        />
       );
     });
   }
