@@ -63,8 +63,8 @@ class Chatter extends Component {
   }
 
   renderUserName() {
-    return (
-      <h2 className="username">{this.state.user}</h2>
+    return this.state.user && (
+      <span className="username">{`${this.state.user}'s `}</span>
     );
   }
 
@@ -99,8 +99,8 @@ class Chatter extends Component {
     return (
       <div className="wrapper">
         <div className="header">
-          <h1 className="title">My Chatter</h1>
-          {this.state.user && this.renderUserName()}
+          <h1 className="title">{this.renderUserName()}Chatter</h1>
+
         </div>
         <div className="messages">
           <ul>{this.renderMessages()}</ul>
