@@ -44,6 +44,7 @@ class Chatter extends Component {
     this.setState({ isOpen: false },
       () => this.handleInput.bind(this, 'user')
     );
+      time: this.getCurrentTime(),
   }
 
   handleInput = (key, event) => {
@@ -62,7 +63,14 @@ class Chatter extends Component {
     const hour = time.getHours() % 12;
     const minutes = time.getMinutes();
 
-    return `${hour}:${minutes}`;
+    return `${hour}:${this.addMissingZero(minutes)}`;
+  }
+
+  addMissingZero(minutes) {
+    if (minutes <= 9){
+      return `0${minutes}`;
+    }
+    return minutes;
   }
 
   updateMessages(message) {
@@ -87,7 +95,6 @@ class Chatter extends Component {
         <Message
           key={i}
           message={message}
-          time={this.getCurrentTime()}
         />
       );
     });
