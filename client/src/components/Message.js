@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Message = ({ message, style }) => {
+const Message = ({ message, style, time }) => {
   return (
     <li className={`message message-${style}`}>
       <div className="message-wrapper">
@@ -8,7 +8,9 @@ const Message = ({ message, style }) => {
           {message.message}
         </p>
       </div>
-      <span className="message-user">{message.user}</span>
+      <div>
+        <span className="message-user">{message.user} {time}</span>
+      </div>
     </li>
   );
 }
