@@ -52,7 +52,7 @@ class Chatter extends Component {
     });
   }
 
-  hideModal = () = {
+  hideModal = () => {
     this.setState({ isOpen: false });
     this.handleInput.bind(this, 'user');
   }
@@ -105,7 +105,6 @@ class Chatter extends Component {
       <div className="wrapper">
         <div className="header">
           <h1 className="title">{this.renderUserName()}Chatter</h1>
-
         </div>
         <div className="messages">
           <ul>{this.renderMessages()}</ul>
