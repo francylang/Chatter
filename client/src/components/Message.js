@@ -9,7 +9,9 @@ const Message = ({ message, style, time }) => {
         </p>
       </div>
       <div>
-        <span className="message-user">{message.user} {time}</span>
+        <span className="message-user">
+          {message.user} {message.time}
+        </span>
       </div>
     </li>
   );

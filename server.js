@@ -7,7 +7,7 @@ const port = 5000;
 const io = require('socket.io')(http);
 
 io.on('connection', (socket) => {
-  socket.broadcast.emit('new_connection', `A new user has joined${socket.id}`);
+  socket.broadcast.emit('new_connection', { message: 'A new user has connected', id: socket.id });
   socket.on('send_message', message => io.emit('receive_message', message));
   socket.on('disconnect', () => console.log('user disconnected'));
 });

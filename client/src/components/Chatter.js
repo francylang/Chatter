@@ -11,8 +11,6 @@ class Chatter extends Component {
     this.state = {
       messages: [],
       user: '',
-      message: '',
-      isOpen: true,
       isOpen: false,
       id: null,
     }
@@ -22,7 +20,7 @@ class Chatter extends Component {
 
   componentDidMount() {
     this.socket.on('connect', () => {
-      this.setState({ isOpen: true, id: this.socket.id });
+      this.setState({ id: this.socket.id });
       console.log(`You are connected!`);
     });
     this.socket.on('new_connection', message => {
@@ -36,18 +34,17 @@ class Chatter extends Component {
   }
 
   handleSubmit = () => {
-    const message = Object.assign({ id: new Date() }, this.state)
-    const id = this.state.id;
+    const { message, id, user } = this.state;
 
-    this.emitMessage(message, id);
-    this.setState({ message: '', currentUser: this.state.user });
-  }
-
-  handleModal = () => {
-    this.setState({ isOpen: false },
-      () => this.handleInput.bind(this, 'user')
-    );
+    const userMessageContent = Object.assign({}, {
+      id: id,
+      user: user,
+      message: message,
       time: this.getCurrentTime(),
+    })
+
+    this.emitMessage(userMessageContent);
+    this.setState({ message: '' });
   }
 
   handleInput = (key, event) => {
@@ -82,8 +79,8 @@ class Chatter extends Component {
     this.setState({ messages: updatedMessages });
   }
 
-  emitMessage(message, id) {
-    this.socket.emit('send_message', message, id)
+  emitMessage(message) {
+    this.socket.emit('send_message', message)
   }
 
   renderUserName() {
