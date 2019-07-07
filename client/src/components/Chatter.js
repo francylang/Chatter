@@ -13,6 +13,7 @@ class Chatter extends Component {
       user: '',
       message: '',
       isOpen: true,
+      isOpen: false,
       id: null,
     }
 
@@ -30,6 +31,8 @@ class Chatter extends Component {
     this.socket.on('receive_message', message => {
       this.updateMessages(message);
     });
+
+    this.setState({ isOpen: true });
   }
 
   handleSubmit = () => {
